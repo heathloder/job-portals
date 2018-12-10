@@ -7,6 +7,9 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   header("location: login.php");
   exit;
 }
+
+// Include config file
+require_once 'config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,44 +25,69 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 </head>
 <body>
 
-    <header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">M&S Paving Job Portal</h4>
-              <p class="text-muted">Use this page to add/view/edit job sites, employess, schedules, and vehicles.  After the above have been added, this page can also be used to track job site updates, check schedules, analyze traffic routes and parking bans, and acquire live/recorded streams of job sites (if available).</p>
-            </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">User Menu</h4>
-              <ul class="list-unstyled">
-                <li><a href="register.php" class="text-white">Add A New Employee</a></li>
-                <li><a href="#" class="text-white">Remove An Employee</a></li>
-                <li><a href="logout.php" class="text-white">Sign Out</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <img src="images/logo.png" class="mr-3" style="height:20px;width:auto;"></img>
-            <strong>Admin Dashboard</strong>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
-    </header>
+   <!-- Header Begin -->
+   <?php include PARTIALSDIR . 'header/header.php' ?>
+   <!-- Header End -->
 
     <main role="main">
 
       <div class="album py-5 bg-light">
         <div class="container">
 
-          <div class="row">
+     <div class="shadow p-3 mb-5 rounded">
+       <h3><u>Job Portal Admin Dashboard</u></h3>
+       <p>Use this page to add/view/edit job sites, users, schedules, and vehicles. After the above have been added, this page can also be used to track job site updates, check schedules, analyze traffic routes and parking bans, and acquire live/recorded streams of job sites (if available).</p>
+     </div>
+
+	  <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <a class="text-center" href="/users.php">
+                   <img class="card-img-top" src="images/users.png" style="width:75%;" alt="Card image cap">
+                </a>
+                <div class="card-body">
+                  <p class="card-text">Users</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a class="btn btn-sm btn-outline-secondary" href="/users.php" role="button">View/Add/Edit</a>
+                      <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                    </div>
+                    <small class="text-muted">
+<?php
+/* GET USER COUNT FOR CARD DISPLAY */
+// Prepare a select statement
+  $sql = "SELECT COUNT(*) FROM users;";
+  
+  if($stmt = mysqli_prepare($link, $sql)){
+      // Bind variables to the prepared statement as parameters
+      //mysqli_stmt_bind_param($stmt, "s", $param_username);
+      
+      // Set parameters
+      //$param_username = trim($_POST["username"]);
+      
+      // Attempt to execute the prepared statement
+      if(mysqli_stmt_execute($stmt)){
+          /* store result */
+          mysqli_stmt_store_result($stmt);
+          
+          // Bind variables to the prepared statement
+          mysqli_stmt_bind_result($stmt, $count);
+
+              // output data.
+              mysqli_stmt_fetch($stmt);
+              echo $count;
+      } else {
+          echo "?";
+      }
+  }
+  // Close statement
+  mysqli_stmt_close($stmt);
+?> Users</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
                 <img class="card-img-top" src="images/job-sites.png" alt="Card image cap">
@@ -74,7 +102,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
                   </div>
                 </div>
               </div>
-            </div>
+	    </div>
+
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
                 <img class="card-img-top" src="images/schedules.png" alt="Card image cap">
@@ -89,7 +118,9 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
                   </div>
                 </div>
               </div>
-            </div>
+	    </div>
+<!-- Top Row end -->
+<!-- Second Row Begin -->
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
                 <img class="card-img-top" src="images/traffic.jpg" alt="Card image cap">
@@ -120,7 +151,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
                   </div>
                 </div>
               </div>
-            </div>
+	    </div>
+
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
                 <img class="card-img-top" src="images/paver.png" alt="Card image cap">
@@ -135,7 +167,9 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
                   </div>
                 </div>
               </div>
-            </div>
+	    </div>
+<!-- Second Row End -->
+<!-- Third Row Begin -->
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
                 <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">

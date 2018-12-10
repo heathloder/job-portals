@@ -27,6 +27,29 @@
   max-width: 40rem;
 }
 
+/*
+ * Site Description
+ */
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*
+ * All Tables (Jobsites Tables)
+ */
+.jobsites-table > thead > tr > th, .jobsites-table > tbody > tr > td {
+  text-align: center;
+}
+
+
+/*
+ * Users Table
+ */
+
+
+/*
+ * Footer
+ */
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem;

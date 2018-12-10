@@ -75,20 +75,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        $sql = "INSERT INTO users (username, password, permission) VALUES (?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            mysqli_stmt_bind_param($stmt, "ssi", $param_username, $param_password, $param_permission);
             
             // Set parameters
             $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+	    $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+	    if($_POST['is-admin-user'] == "yes") {
+	       $param_permission = 1;
+	    } else {
+	       $param_permission = 0;
+	    } 
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
-                header("location: login.php");
+                header("location: index.php");
             } else{
                 echo "Something went wrong. Please try again later.";
             }
@@ -122,7 +127,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
     <div class="wrapper">
         <h2>Create User</h2>
-        <p>Complete this form to create an account.</p>
+        <p>Complete this form to create a Job Portal user account.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Username</label>
@@ -138,12 +143,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <label>Confirm Password</label>
                 <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
                 <span class="help-block"><?php echo $confirm_password_err; ?></span>
+	    </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="is-admin-user" id="admin-checkbox" value="yes">
+                <label class="form-check-label" for="admin-checkbox">Admin User?</label>
             </div>
-            <div class="form-group">
+	    <div class="form-group"> 
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
             </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
+<!--            <p>Already have an account? <a href="login.php">Login here</a>.</p> -->
         </form>
     </div>    
 

@@ -1,0 +1,41 @@
+<?php
+/* Site/App URL Configuration */
+   // For Filesystem access.
+   $baseDir = dirname(__DIR__) . '/';  // This should not be changed.
+   // For /var/www/html
+   $baseDir = $baseDir . 'html/';  // This should be modified to match site.
+   define('BASEDIR', $baseDir);
+   define('PARTIALSDIR', $baseDir . 'partials/');
+//   define('MENUDIR', PARTIALSDIR . 'menu/');
+   define('CSSDIR', $baseDir . 'css/');
+   define('JSDIR', $baseDir . 'js/');
+   define('IMAGESDIR', $baseDir . 'images/');
+   define('SITESDIR', $baseDir . 'sites/');
+   // For web access.
+   $rootUrl = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+//   $rootUrl = $rootUrl . '~dobrush/vdhl/stat/r/';  // This should be modified to match site. - NOT FOR JOBSITES
+   define('ROOTURL', $rootUrl);
+   define('CSSURL', $rootUrl . 'css/');
+   define('JSURL', $rootUrl . 'js/');
+   define('PARTIALSURL', $rootUrl . 'partials/');
+   define('IMAGESURL', $rootUrl . 'images/');
+   define('SITESURL', $rootUrl . 'sites/');
+//   define('MENUURL', PARTIALSURL . 'menu/');
+   // Contextual data
+   define('TITLE', 'M&S Paving Job Portal');
+
+/* Database credentials. Assuming you are running MySQL
+* server with default setting (user 'root' with no password) */
+define('DB_SERVER', 'db_host');  // Usually 'localhost'.
+define('DB_USERNAME', 'db_user');
+define('DB_PASSWORD', 'db_password');
+define('DB_NAME', 'db_name');
+ 
+/* Attempt to connect to MySQL database */
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+ 
+// Check connection
+if($link === false){
+   die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+?>

@@ -81,27 +81,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
    <!-- Bootstrap Core CSS CDN -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <!-- FontAwesome CDN -->
+   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
    <!-- Main CSS file -->
    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="text-center">
 
-    <div class="container-fluid d-flex h-100 p-3 mx-auto flex-column">
+    <div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
           <h3 class="masthead-brand">M&S Paving Job Portal Login</h3>
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link active" href="#">Home</a>
             <a class="nav-link" href="#">News</a>
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="http://www.mspave.com">Main Website</a>
           </nav>
         </div>
       </header>
 
       <main role="main" class="inner cover">
 
-       <img src="/images/logo.png" class="img-fluid" alt="Responsive image">
+         <img src="/images/logo.png" class="img-fluid mt-5" alt="M&S Paving Logo">
 
          <form class="form-signin" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"> 
             <div class="text-center mb-4">
@@ -125,16 +127,58 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="checkbox" value="remember-me"> Remember me
               </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>         
           </form>
-      </main>
+
+			<!-- Container (Services Section) -->
+			<div class="container-fluid text-center mt-6 mb-6">
+			  <h2>SERVICES</h2>
+			  <h4>What we offer</h4>
+			  <br>
+			  <div class="row">
+				 <div class="col-sm-4">
+					<i class="fa fa-power-off fa-3x"></i>
+					<h4>POWER</h4>
+					<p>Lorem ipsum dolor sit amet..</p>
+				 </div>
+				 <div class="col-sm-4">
+					<i class="fa fa-heart fa-3x"></i>
+					<h4>LOVE</h4>
+					<p>Lorem ipsum dolor sit amet..</p>
+				 </div>
+				 <div class="col-sm-4">
+					<i class="fa fa-lock fa-3x"></i>
+					<h4>JOB DONE</h4>
+					<p>Lorem ipsum dolor sit amet..</p>
+				 </div>
+			  </div>
+			  <br><br>
+			  <div class="row">
+				 <div class="col-sm-4">
+					<i class="fa fa-leaf fa-3x"></i>
+					<h4>GREEN</h4>
+					<p>Lorem ipsum dolor sit amet..</p>
+				 </div>
+				 <div class="col-sm-4">
+					<i class="fa fa-certificate fa-3x"></i>
+					<h4>CERTIFIED</h4>
+					<p>Lorem ipsum dolor sit amet..</p>
+				 </div>
+				 <div class="col-sm-4">
+					<i class="fa fa-wrench fa-3x"></i>
+					<h4>HARD WORK</h4>
+					<p>Lorem ipsum dolor sit amet..</p>
+				 </div>
+			  </div>
+			</div>
+     </main>
 
       <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+          <p class="mb-3 text-muted text-center">Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>. &copy; 2017-2018</p>
         </div>
       </footer>
+
     </div>
 
 <!-- jQuery, Poppler, and Bootstrap JS -->
